@@ -19,7 +19,7 @@ class AppRoute extends React.Component {
   render() {
     return(
       <Switch>
-        <Route exact path="/" render={props => <Home {...props} plants={this.props.plants} />} />
+        <Route exact path={process.env.PUBLIC_URL + '/'} render={props => <Home {...props} plants={this.props.plants} />} />
         <Route exact path="/locaflora" render={props => <Home {...props} plants={this.props.plants} />} />
         <Route exact path="/plant/:plantSlug" render={props => <Plant {...props} plants={this.props.plants} key={props.match.params.plantSlug} />} />
         <Route component={NoMatch} />
