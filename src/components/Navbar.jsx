@@ -16,7 +16,7 @@ const Navbar = () => {
               className="nav-link"
               activeClassName="active"
               to={{
-                  pathname: `/`
+                  pathname: `/locaflora`
                 }}
             >
               Home
