@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/locaflora/static/css/main.f6cad61b.chunk.css",
-    "main.js": "/locaflora/static/js/main.600f582c.chunk.js",
-    "main.js.map": "/locaflora/static/js/main.600f582c.chunk.js.map",
+    "main.js": "/locaflora/static/js/main.79934cdf.chunk.js",
+    "main.js.map": "/locaflora/static/js/main.79934cdf.chunk.js.map",
     "runtime-main.js": "/locaflora/static/js/runtime-main.86ab142c.js",
     "runtime-main.js.map": "/locaflora/static/js/runtime-main.86ab142c.js.map",
     "static/js/2.2eace185.chunk.js": "/locaflora/static/js/2.2eace185.chunk.js",
     "static/js/2.2eace185.chunk.js.map": "/locaflora/static/js/2.2eace185.chunk.js.map",
     "index.html": "/locaflora/index.html",
-    "precache-manifest.00d6c53f2c693d2990b1e45c6e7242ae.js": "/locaflora/precache-manifest.00d6c53f2c693d2990b1e45c6e7242ae.js",
+    "precache-manifest.abc19becbac780311a118226840a1904.js": "/locaflora/precache-manifest.abc19becbac780311a118226840a1904.js",
     "service-worker.js": "/locaflora/service-worker.js",
     "static/css/main.f6cad61b.chunk.css.map": "/locaflora/static/css/main.f6cad61b.chunk.css.map",
     "static/js/2.2eace185.chunk.js.LICENSE.txt": "/locaflora/static/js/2.2eace185.chunk.js.LICENSE.txt",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.86ab142c.js",
     "static/js/2.2eace185.chunk.js",
     "static/css/main.f6cad61b.chunk.css",
-    "static/js/main.600f582c.chunk.js"
+    "static/js/main.79934cdf.chunk.js"
   ]
 }

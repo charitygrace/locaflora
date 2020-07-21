@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b4f8a0047512a7f3fb499e6f24e45bb3",
+    "revision": "ddbcb78799a454e77110406dc3647e1c",
     "url": "/locaflora/index.html"
   },
   {
-    "revision": "7ed858e9c6bc71d9c1cb",
+    "revision": "627a0062020b92dad923",
     "url": "/locaflora/static/css/main.f6cad61b.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/locaflora/static/js/2.2eace185.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "7ed858e9c6bc71d9c1cb",
-    "url": "/locaflora/static/js/main.600f582c.chunk.js"
+    "revision": "627a0062020b92dad923",
+    "url": "/locaflora/static/js/main.79934cdf.chunk.js"
   },
   {
     "revision": "3becebf58b086cb76782",
