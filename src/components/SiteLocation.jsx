@@ -1,10 +1,8 @@
 import React from 'react'
 
-const SiteLocation = () => {
+const SiteLocation = (props) => {
   return (
-    <div className="container-fluid">
-      <h1 className="site-title h3">Native Plants of North Carolina</h1>
-    </div>
+    <h1 className="site-title">Native Plants of {props.state_}</h1>
   )
 }
 

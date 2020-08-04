@@ -1,15 +1,15 @@
 import React from 'react'
-//import Header from './TopBar';
-import Navbar from './Navbar';
-import SiteLocation from './SiteLocation';
+import TopBar from './TopBar'
+import Navbar from './Navbar'
+import SiteLocation from './SiteLocation'
 
 
-const Header = () =>  {
+const Header = (props) =>  {
   return (
     <div className="header">
-      {/*<TopBar />*/}
+      {<TopBar plants={props.plants} />}
       <Navbar />
-      <SiteLocation />
+      <SiteLocation country={props.country} state={props.state} />
     </div>
   )
 }

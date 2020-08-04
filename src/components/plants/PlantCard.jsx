@@ -1,14 +1,18 @@
 import React from 'react'
 //import PlantFeature from './PlantFeature';
 //import { labels } from '../../data/cleanData'
-
+import PlantMonthLine from './PlantMonthLine';
+import FavoritePlant from './FavoritePlant';
 import { Link } from "react-router-dom";
 import plantDefaultImage from './plantDefaultImage.svg';
 import colorsArr from '../../data/colors.json';
+//import star from '../../icons/star.svg';
+import { moistureIcon } from '../../icons/moisture.js';
+import { sunIcon } from '../../icons/sun.js';
 
 
 const PlantCard = props =>  {
-  //console.log(props.plant);
+  //console.log(props);
   //console.log(plantDefaultImage);
   const plant = props.plant
   let thumb1 = <img src={plantDefaultImage} alt={plant.name} className="card-img-top" />;
@@ -33,8 +37,8 @@ const PlantCard = props =>  {
       className={'card-img-top img-' + orient }
       src={t1.default}
       srcSet={
-        "https://static.inaturalist.org/photos/" + t1.id + "/small." + t1.fileType + " " + sm +"w" + ", "
-        + "https://static.inaturalist.org/photos/" + t1.id + "/medium." + t1.fileType + " " + md +"w" + ", "
+        "https://static.inaturalist.org/photos/" + t1.id + "/small." + t1.fileType + " " + sm +"w, "
+        + "https://static.inaturalist.org/photos/" + t1.id + "/medium." + t1.fileType + " " + md +"w, "
         + "https://static.inaturalist.org/photos/" + t1.id + "/large." + t1.fileType + " " + lg +"w"
       }
       sizes="100vw"
@@ -72,55 +76,54 @@ const PlantCard = props =>  {
         lg = (width * 1024) / height
       }
 
-
+      example
       srcset="elva-fairy-480w.jpg 480w,
              elva-fairy-800w.jpg 800w"
      sizes="(max-width: 600px) 480px,
             800px"
             */
+
   }
   if (plant.thumb['2'][0]) {
     //let thumb2 = <img src={plant.thumb['2'][0].default} alt={plant.thumb['2'][0].alt} className='card-img-top' />;
   }
 
   return (
-    <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-4">
-      <div className="card h-100">
+    <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-1">
+      <div className="card h-100 mr-2 ml-2 mt-1 mb-2">
         <Link to={{
           pathname: `/plant/${plant.slug}`,
           state: { plant :  plant }
         }}>
           <div className="card-head">
             {thumb1}
+            <div className="row careIcons">
+              <dl className="col-6">
+                <dt className="sr-only">Light</dt>
+                <dd>{plant.lightNeeds.map((item, index) => sunIcon(item, index))}</dd>
+              </dl>
+              <dl className="col-6 text-right">
+                <dt className="sr-only">Moisture Needs</dt>
+                <dd>{plant.soils.moistureNeeds.map((item, index) => moistureIcon(item, index))} </dd>
+              </dl>
+            </div>
           </div>
-        </Link>
+        <FavoritePlant plant={plant} />
+        <PlantMonthLine plant={plant} country={props.country} state_={props.state_} />
         <div className="card-body">
           <h5 className="card-title">
-            <Link to={{
-              pathname: `/plant/${plant.slug}`,
-              state: { plant :  plant }
-            }}>
               {plant.name}
-            </Link>
           </h5>
-          {plant.taxa.commonName}
-          <dl className="row">
-            <dt className="col-12">Light</dt>
-            <dd className="col-12">{
-              plant.lightNeeds.map((item, index, arr) =>(
-                  <span key={index}>{(index ? ", " : "") + item}</span>
-                )
-              )}
-            </dd>
-          </dl>
+          <p>{plant.taxa.commonName}</p>
+          <div className="row">
           {plant.flowers.colors.length > 0 ? (
-            <dl className="row">
-              <dt className="col-12">Flowers</dt>
-              <dd className="col-12">{
+            <dl className="col-6 mb-0">
+              <dt className="sr-only">Flower Colors</dt>
+              <dd className="">{
                 plant.flowers.colors.map((color, index) =>
                   <span
                     key={index}
-                    className="color-block"
+                    className="color-block color-circle"
                     style={{backgroundColor:  colorsArr[color], border: "1px solid #ccc"} }
                   >
                   </span>
@@ -129,13 +132,13 @@ const PlantCard = props =>  {
             </dl>
           ) : null}
           {plant.fruits.colors.length > 0 ? (
-            <dl className="row">
-              <dt className="col-12">Fruits</dt>
-              <dd className="col-12">{
+            <dl className="col-6 mb-0">
+              <dt className="sr-only">Fruit Colors</dt>
+              <dd className="">{
                 plant.fruits.colors.map((color, index) =>
                   <span
                     key={index}
-                    className="color-block"
+                    className="color-block color-circle"
                     style={{backgroundColor:  colorsArr[color], border: "1px solid #ccc"} }
                   >
                   </span>
@@ -143,8 +146,10 @@ const PlantCard = props =>  {
               </dd>
             </dl>
           ) : null}
-          <div className="text-right"><a href={"http://localhost:5000/edit-plant/select-images/" + plant.slug}>Edit</a></div>
+          {/*<div className="text-right"><a target="_blank" href={"http://localhost:5000/edit-plant/select-images/" + plant.slug}>Edit</a></div>*/}
         </div>
+      </div>
+      </Link>
       </div>
     </div>
   )
@@ -158,4 +163,5 @@ export default PlantCard
 <PlantFeature dt={labels.lightNeeds} dd={props.plant.lightNeeds} />
 <PlantFeature dt={labels.soil.moistureNeeds} dd={props.plant.soil.moistureNeeds} />
 <PlantFeature dt={labels.flowers.seasons} dd={props.plant.flowers.seasons} />
-<dt className="col-12">{labels.flowers.colors}</dt>*/
+<dt className="col-12">{labels.flowers.colors}</dt>
+*/

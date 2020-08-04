@@ -1,4 +1,5 @@
 import React from 'react'
+import Collapsible from 'react-collapsible';
 
 
 export class FilterGroupCheckbox extends React.Component {
@@ -10,14 +11,13 @@ export class FilterGroupCheckbox extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange(e) {
-    //console.log('handleChange check');
+    console.log('handleChange');
+    console.log(e.target.value);
+    console.log(e.target.checked);
     const filterName = this.props.filterName
-    const filter = this.props.filters.find( item => item.name === filterName );
     const filterValue = e.target.value;
-    //console.log(filterValue);
     let activeFilters = this.state.activeFilters;
     //console.log(activeFilters);
-    //console.log(activeFilter.length);
     // setup the activeFilter array as soon as something is clicked
     let match = activeFilters.find( item => item.name === filterName );
     //console.log(match);
@@ -26,10 +26,13 @@ export class FilterGroupCheckbox extends React.Component {
       match.options.push(filterValue);
       //console.log(match.options);
     } else {
-      match.options.pop(filterValue);
+      const index = match.options.indexOf(filterValue);
+      if (index > -1) {
+        match.options.splice(index, 1);
+      }
       //console.log(match.options);
     }
-    //console.log(activeFilters);
+    console.log(activeFilters);
     this.setState({
       activeFilters: activeFilters
     })
@@ -40,22 +43,21 @@ export class FilterGroupCheckbox extends React.Component {
     const filterName = this.props.filterName
     const filter = this.props.filters.find( item => item.name === filterName );
     const id = filterName + "-";
+    //console.log(this.props.filters);
+    //console.log(filterName);
+    //console.log(filter);
     return (
-      <div>
-        <h3 data-toggle="collapse" href={'#' + id + 'filter'} role="button" aria-controls={id + 'filter'}>
-          <label>{filter.label}</label>
-        </h3>
-        <div className="collapse show" id={id + 'filter'}>
-          <div className="card card-body">
-            {filter.options.map( (option, key) => (
-              <div className="form-check" key={key}>
-                <input className="form-check-input" type="checkbox" data-filtername={filterName} value={option} id={id + option} onChange={this.handleChange} />
-                <label className="form-check-label" htmlFor={option}>{option}</label>
-              </div>
-            ))}
+      <Collapsible
+        trigger={filter.label}
+        transitionTime={200}
+        >
+        {filter.options.map( (option, key) => (
+          <div className="form-check" key={key}>
+            <input className="form-check-input" type="checkbox" data-filtername={filterName} value={option} id={id + option} onChange={this.handleChange} />
+            <label className="form-check-label" htmlFor={option}>{option}</label>
           </div>
-        </div>
-      </div>
+        ))}
+      </Collapsible>
     )
   }
 }

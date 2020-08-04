@@ -4,7 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light">
       <Link to="/" className="navbar-brand">Project Locaflora</Link>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
@@ -16,7 +16,7 @@ const Navbar = () => {
               className="nav-link"
               activeClassName="active"
               to={{
-                  pathname: `/locaflora`
+                  pathname: `/`
                 }}
             >
               Home

@@ -1,11 +1,19 @@
 import React from 'react'
 import Breadcrumbs from '../components/Breadcrumbs'
 import plantDefaultImage from '../components/plants/plantDefaultImage.svg';
+import PlantMonthLine from '../components/plants/PlantMonthLine';
+import { moistureIcon } from '../icons/moisture.js';
+import { sunIcon } from '../icons/sun.js';
 
 const Plant = props => {
   console.log(props);
   const plants = props.plants
-  const plant = props.plants.find(plant => plant.slug === props.match.params.plantSlug)
+  const plant = plants.find(plant => plant.slug === props.match.params.plantSlug)
+  const country = props.country
+  const state_ = props.state_
+  const region = country + ':' + state_
+  console.log(country);
+  console.log(region);
   //console.log(plant);
   let imgArr = []
   if (plant.thumb['1'][0]) imgArr.push(plant.thumb['1'][0])
@@ -20,9 +28,8 @@ const Plant = props => {
   const iNatSrc = "https://static.inaturalist.org/photos/"
 
   console.log(imgArr);
+  /*<Breadcrumbs plant={plant} />*/
   return (
-    <div className="container">
-      <Breadcrumbs plant={plant} />
       <div className="row">
         <div className="col-6">
           <ul className="list-unstyled list-inline">
@@ -33,49 +40,49 @@ const Plant = props => {
               )
             )}
           </ul>
+          <PlantMonthLine plant={plant} country={props.country} state_={props.state_} />
           <p>{plant.taxa.scientificFamily} ({plant.taxa.commonFamily})</p>
           <h1>{plant.name}</h1>
-          <ul className="list-unstyled list-inline">
-            {plant.taxa.scientificAlts.map( (i, key) => (
-              <li className="list-inline-item list-pipe" key={key}>
-                {i}
-              </li>
-              )
-            )}
-          </ul>
-          <ul className="list-unstyled list-inline">
-            <li className="list-inline-item list-pipe">
-              {plant.taxa.commonName}
-            </li>
+          <p>
+            <strong>{plant.taxa.commonName}</strong>
+            {plant.taxa.commonAlts.length > 0 ? ", " : null }
             {plant.taxa.commonAlts.map( (i, key) => (
-              <li className="list-inline-item list-pipe" key={key}>
-                {i}
-              </li>
+                i
               )
-            )}
-          </ul>
+            ).join(", ")}
+          </p>
+          <div className="careIcons">
+            <dl className="float-left">
+              <dt className="sr-only">Light</dt>
+              <dd>{plant.lightNeeds.map((item, index) => sunIcon(item, index))}</dd>
+            </dl>
+            <dl className="float-left">
+              <dt className="sr-only">Moisture Needs</dt>
+              <dd>{plant.soils.moistureNeeds.map((item, index) => moistureIcon(item, index))} </dd>
+            </dl>
+          </div>
           <hr />
           <h3>Native</h3>
           <ul className="list-unstyled list-inline">
-            {plant.native['US'].map( (i, key) => (
+            {plant.native[country].map( (i, key) => (
               <li className="list-inline-item list-pipe" key={key}>
                 {i}
               </li>
               )
             )}
           </ul>
-          <h3>NC Regions</h3>
+          <h3>{state_} Regions</h3>
           <ul className="list-unstyled list-inline">
-            {plant.regions['US:NC'].map( (i, key) => (
+            {plant.regions[region].map( (i, key) => (
               <li className="list-inline-item list-pipe" key={key}>
                 {i}
               </li>
               )
             )}
           </ul>
-          <h3>Exotic</h3>
+          {plant.exotic[country] ? <h3>Exotic</h3> : null }
           <ul className="list-unstyled list-inline">
-            {plant.exotic['US'] ? plant.exotic['US'].map( (i, key) => (
+            {plant.exotic[country] ? plant.exotic[country].map( (i, key) => (
               <li className="list-inline-item list-pipe" key={key}>
                 {i}
               </li>
@@ -251,7 +258,7 @@ const Plant = props => {
             )}
           </ul>
           <hr />
-          <div className="text-right"><a href={"http://localhost:5000/edit-plant/select-images/" + plant.slug}>Edit</a></div>
+          <div className="text-right"><a target="_blank" rel="noopener noreferrer" href={"http://localhost:5000/edit-plant/select-images/" + plant.slug}>Edit</a></div>
         </div>
         <div className="col-6 order-first">
           <div className="row">
@@ -275,7 +282,15 @@ const Plant = props => {
           </div>
         </div>
       </div>
-    </div>
   );
 }
 export default Plant;
+
+/*
+<p>
+  ({plant.taxa.scientificAlts.map( (i, key) => (
+      i
+    )
+  ).join(", ")})
+</p>
+*/

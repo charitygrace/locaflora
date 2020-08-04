@@ -1,4 +1,5 @@
 import React from 'react'
+import Collapsible from 'react-collapsible';
 
 
 export class FilterGroupCheckbox extends React.Component {
@@ -47,25 +48,17 @@ export class FilterGroupCheckbox extends React.Component {
     const filter = this.props.filters.find( item => item.name === filterName );
     const id = filterName + "-";
     return (
-      <div>
-        <h3 data-toggle="collapse" href={'#' + id + 'filter'} role="button" aria-controls={id + 'filter'}>
-          <label>{filter.label}</label>
-        </h3>
-        <div className="collapse show" id={id + 'filter'}>
-          <div className="card card-body">
-            <div className="form-check" key="none">
-              <input className="form-check-input" type="radio" name={"radio-" + filterName} defaultChecked value="all" id={id + "all"} data-filtername={filterName} onChange={this.handleChange} />
-              <label className="form-check-label" htmlFor="all">Show All</label>
+      <Collapsible
+        trigger={filter.label}
+        transitionTime={200}
+        >
+          {filter.options.map( (option, key) => (
+            <div className="form-check" key={key}>
+              <input className="form-check-input" type="radio" name={"radio-" + filterName} value={option} id={id + option} data-filtername={filterName} onChange={this.handleChange} />
+              <label className="form-check-label" htmlFor={option}>{option}</label>
             </div>
-            {filter.options.map( (option, key) => (
-              <div className="form-check" key={key}>
-                <input className="form-check-input" type="radio" name={"radio-" + filterName} value={option} id={id + option} data-filtername={filterName} onChange={this.handleChange} />
-                <label className="form-check-label" htmlFor={option}>{option}</label>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+          ))}
+      </Collapsible>
     )
   }
 }

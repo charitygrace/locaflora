@@ -1,5 +1,20 @@
-/*@import url('https://use.fontawesome.com/releases/v5.6.3/css/all.css');*/
+@import url('https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,300;0,400;0,700;1,400&display=swap');
 
+$font-color: #707070;
+
+$headings-font-weight: 700;
+
+$card-border-width: 0;
+$card-spacer-x: .5rem;
+$card-spacer-y: 0rem;
+
+$font-family-sans-serif: Overpass, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$body-color: $font-color;
+$icon-care-color: #1DACAC;
+$icon-care-card-color: #ffffff;
+$icon-favorite-active: red;
+
+$filter-background: #E3E3E3;
 
 @import "../node_modules/bootstrap-scss/functions";
 @import "../node_modules/bootstrap-scss/variables";
@@ -41,13 +56,27 @@
 @import "../node_modules/bootstrap-scss/utilities";
 @import "../node_modules/bootstrap-scss/print";
 
+.header {
+  margin-top: 20px;
+}
 
 .list-pipe + .list-pipe::before {
     display: inline-block;
     padding-right: 0.5rem;
     content: "|";
 }
-
+.plant-count {
+  position: absolute;
+  top: -20px;
+  right: 15px;
+}
+.card a {
+  color: $font-color
+}
+.card a:hover {
+  text-decoration: none;
+  box-shadow: 0px 0px 7px rgba(0,0,0,.5);
+}
 .card-head {
     height: 250px;
     overflow: hidden;
@@ -68,6 +97,9 @@
 }
 .card-head .img-vert {
 }
+.card-body p {
+  margin-bottom: 5px
+}
 
 .figure {
   position: relative;
@@ -79,12 +111,257 @@
   width: 100%;
   color: white;
   padding: 2px 8px;
-  font-size: 12px;
+  font-weight: 300;
+  font-size: .75rem;
 }
 
-.color-block {
+.card .favorite {
+    position: absolute;
+    top: 6px;
+    left: 4px;
+    width: 22px;
+    line-height: 1;
+    background: transparent;
+    border: 0;
+    padding: 0;
+  }
+.favorite svg {
+  fill: transparent;
+  stroke-width: 13px;
+  filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.5));
+}
+.card .favorite svg {
+  stroke: $icon-care-card-color;
+}
+.favorite:focus {
+  outline:0px;
+  box-shadow:none;
+}
+.card .favorite:hover svg {
+  fill: $icon-care-card-color;
+}
+.favorite:focus svg {
+  filter: drop-shadow(0px 0px 2px $blue);
+}
+.card .fav-active svg {
+  fill: $icon-favorite-active;
+  stroke: $icon-favorite-active;
+}
+
+.careIcons {
+  line-height: 1;
+  @include clearfix
+}
+
+.card .careIcons {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0,0,0,.5);
+    height: 25px;
+    right: 0;
+    left: 0;
+}
+.careIcons svg {
   height: 35px;
-  width: 35px;
+  margin: 3px 2px 2px;
+  stroke-width: 9px;
+  fill: $icon-care-color;
+  stroke: $icon-care-color;
+}
+.card .careIcons svg {
+  height: 19px;
+  margin: 3px 2px 2px;
+  stroke-width: 9px;
+  fill: $icon-care-card-color;
+  stroke: $icon-care-card-color;
+}
+
+svg.icon-sun .sun-outer{
+}
+svg.icon-sun .sun-inner{
+}
+svg.icon-part-shade .sun-outer{
+  fill: transparent;
+}
+svg.icon-part-shade .sun-inner{
+  stroke: transparent;
+}
+svg.icon-shade .sun-outer{
+  fill: transparent;
+}
+svg.icon-shade .sun-inner{
+  fill: transparent;
+  stroke: transparent;
+}
+svg.icon-deep-shade .sun-outer{
+  fill: transparent;
+  stroke: transparent;
+}
+svg.icon-deep-shade .sun-inner{
+  fill: transparent;
+}
+
+svg.icon-moistureNeeds, .card svg.icon-moistureNeeds {
+  fill: transparent;
+  stroke: transparent;
+}
+svg.icon-dry .dropsSmall, svg.icon-dry .aquaticLines {
+  fill: transparent;
+  stroke: transparent;
+}
+svg.icon-dry .dropMain {
+  fill: transparent;
+}
+svg.icon-moist .dropMain {
+  fill: $icon-care-color;
+}
+.card svg.icon-moist .dropMain {
+  fill: $icon-care-card-color;
+}
+
+svg.icon-wet .dropMain, svg.icon-wet .dropsSmall {
+  fill: $icon-care-color;
+}
+.card svg.icon-wet .dropMain, .card svg.icon-wet .dropsSmall {
+  fill: $icon-care-card-color;
+}
+svg.icon-aquatic .aquaticLines {
+  fill: $icon-care-color;
+}
+.card svg.icon-aquatic .aquaticLines {
+  fill: $icon-care-card-color;
+}
+svg.icon-aquatic .dropsSmall {
+  fill: $icon-care-color;
+}
+.card svg.icon-aquatic .dropsSmall {
+  fill: $icon-care-card-color;
+}
+
+
+.color-block {
+  height: 15px;
+  width: 15px;
   margin-right: 5px;
   display: inline-block;
+}
+
+.color-circle {
+    border-radius: 50%;
+}
+
+.infinite-scroll-component {
+  overflow: hidden !important
+}
+
+.month-line {
+  height: 6px;
+  background: #ccc;
+}
+
+.month-line div:first-child {
+  border-left: 0px solid white;
+}
+
+.month-line div {
+  position: relative;
+  border-left: 1px solid white;
+}
+
+.monthtip {
+  transform: translateX(-50%);
+  min-width: 60px;
+  visibility: hidden;
+  background-color: rgba(0,0,0,.65);
+  color: #fff;
+  font-size: 12px;
+  cursor: default;
+  text-shadow: none;
+  text-align: center;
+  overflow: visible;
+  padding: 2px 5px;
+  transition: opacity .3s ease-in .3s;
+  position: absolute;
+  /*overflow: hidden;*/
+  opacity: 0;
+  white-space: nowrap;
+  top: 7px; //match month-line height + 1
+  z-index: 1;
+}
+
+.monthtip:after {
+  content: ' ';
+  position: absolute;
+  top: -5px; //match with border-bottom
+  left: 50%;
+  display: block;
+  height: 0;
+  width: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 5px solid rgba(0,0,0,.65);
+  margin-left: 0;
+}
+
+
+div:hover>.monthtip,
+div:focus>.monthtip,
+div:active>.monthtip {
+    visibility: visible;
+    opacity: 1
+}
+
+div:focus>.monthtip:hover
+{
+  background: none;
+  border: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  text-indent: -9999px;
+}
+
+.filters {
+  background: $filter-background
+}
+.filters h3 {
+  font-size: 1.25rem;
+  padding:6px 10px 0;
+}
+.Collapsible {
+  border-bottom:2px solid white;
+  padding:11px 10px;
+}
+
+.Collapsible__trigger {
+  font-weight: 700;
+  display:block;
+  position: relative;
+}
+.Collapsible__trigger:after {
+    content: ' +';
+    line-height: 1;
+    position: absolute;
+    right: 0px;
+    top: 5px;
+}
+.Collapsible__trigger.is-open:after {
+  content: ' –';
+}
+.Collapsible__contentInner {
+  padding:4px 3px 5px;
+}
+
+.site-title {
+  font-weight: 400;
+  padding: 20px 0 60px;
+  font-size: 2rem;
+}
+
+.container-main {
+  max-width: 1410px;
+}
+
+.container-nav {
+    border-bottom: 2px solid #707070;
 }

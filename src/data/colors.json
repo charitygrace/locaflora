@@ -4,10 +4,13 @@
   "Pink": "#FB60A3",
   "Orange": "#ff7f41",
   "Yellow": "#F8EE62",
+  "Leaf": "#5D9C25",
+  "Fall": "#DB211F",
   "Green": "#2DC84D",
   "Blue": "#147BD1",
   "Lavender": "#A985D6",
   "Purple": "#753BBD",
   "Brown": "#582700",
-  "Black": "#000000"
+  "Black": "#000000",
+  "None": "#CCCCCC"
 }

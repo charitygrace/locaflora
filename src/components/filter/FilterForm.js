@@ -4,17 +4,21 @@ import FilterGroupRadio from './FilterGroupRadio'
 import { getFieldofObj } from '../../actions/getFieldofObj.js';
 import fields from '../../data/fields.json';
 
+//reenter these names in return() -> specify radio or checkbox
 const filterNames = [
   "plantTypes",
   "lifeCycle",
   "lightNeeds",
+  "soils.moistureNeeds",
   "flowers.colors",
-  "flowers.seasons"
+  "flowers.seasons",
 ]
 
 export class FilterForm extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+    };
     this.changeFilter = this.changeFilter.bind(this);
   }
 
@@ -48,10 +52,11 @@ export class FilterForm extends React.Component {
 
     //console.log(filters);
     return (
-      <div className="bg-light">
-        <legend>Filter By</legend>
+      <div className="filters">
+        <h3>Filter By</h3>
         <FilterGroupRadio onChange={this.changeFilter} filterName="plantTypes" filters={filters} activeFilters={activeFilters} />
         <FilterGroupCheckbox onChange={this.changeFilter} filterName="lightNeeds" filters={filters} activeFilters={activeFilters} />
+        <FilterGroupCheckbox onChange={this.changeFilter} filterName="soils.moistureNeeds" filters={filters} activeFilters={activeFilters} />
         <FilterGroupCheckbox onChange={this.changeFilter} filterName="flowers.colors" filters={filters} activeFilters={activeFilters} />
         <FilterGroupCheckbox onChange={this.changeFilter} filterName="flowers.seasons" filters={filters} activeFilters={activeFilters} />
         <FilterGroupRadio onChange={this.changeFilter} filterName="lifeCycle" filters={filters} activeFilters={activeFilters} />
