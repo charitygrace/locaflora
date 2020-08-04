@@ -21,7 +21,7 @@ class AppRoute extends React.Component {
     //console.log(this.props.searchTerm);
     return(
       <Switch>
-        <Route exact path="/" render={
+        <Route exact path="/locaflora" render={
             props =>
               <Home {...props}
                 key="homeURL"
