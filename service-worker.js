@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/locaflora/precache-manifest.2fa27387eb50733c98f05b37ef2842ed.js"
+  "/locaflora/precache-manifest.763cae0f26da94b95dabb5c186876561.js"
 );
 
 self.addEventListener('message', (event) => {
