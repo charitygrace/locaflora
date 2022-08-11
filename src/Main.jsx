@@ -1,9 +1,10 @@
 import React from 'react';
-//import Header from './components/Header';
-import Spinner from './components/Spinner';
+import { BrowserRouter } from 'react-router-dom';
 import AppRoutes from './AppRoutes';
+import Spinner from './components/Spinner';
+//import Header from './components/Header';
 import TopBar from './components/TopBar'
-import Navbar from './components/Navbar'
+import Navigation from './components/Navigation'
 import SiteLocation from './components/SiteLocation'
 
 import { getStoredPlants } from './actions/getStoredPlants';
@@ -11,25 +12,26 @@ import { getStoredPlants } from './actions/getStoredPlants';
 class Main extends React.Component {
   constructor(props) {
     super(props);
+    // console.log(props);
     this.state = {
       hasPlants: false,
-      searchTerm: "",
+      // searchTerm: "",
       plants: []
     }
-    this.country="US"
-    this.state_="NC"
+    this.country = "US"
+    this.state_ = "NC"
     //console.log("Main");
     this.handleUpdate = this.handleUpdate.bind(this);
-    this.handleSearch = this.handleSearch.bind(this);
+    // this.handleSearch = this.handleSearch.bind(this);
   }
 
   componentDidMount() {
-    //console.log("Main componentDidMount");
+    // console.log("Main componentDidMount");
     return getStoredPlants().then(data => {
       //console.log(data);
       this.setState({
         hasPlants: true,
-        activePlants: data,
+        // activePlants: data,
         plants: data,
       })
     });
@@ -37,42 +39,43 @@ class Main extends React.Component {
 
   handleUpdate(plants) {
     this.setState({
-      plants: plants
+      plants: plants,
+      hasPlants: true
     })
   }
 
-  handleSearch(termArr) {
-    //console.log(termArr);
-    this.setState({
-      searchTerm: termArr
-    })
-  }
+  // handleSearch(termArr) {
+  //   //console.log(termArr);
+  //   this.setState({
+  //     searchTerm: termArr
+  //   })
+  // }
 
-  render () {
+  render() {
     //console.log(this.state.searchTerm);
     return (
-      <div>
-        <div className="header">
-          <div className="container-fluid container-main">
-            <TopBar plants={this.state.plants} onChange={this.handleSearch} />
-          </div>
-          <div className="container-nav">
+      <BrowserRouter>
+        <div>
+          <div className="header">
             <div className="container-fluid container-main">
-              <div className="row">
-                  <Navbar />
+              <TopBar plants={this.state.plants} />
+            </div>
+            <div className="container-nav">
+              <div className="container-fluid container-main">
+                  <Navigation />
               </div>
             </div>
           </div>
+          <div className="container-fluid container-main">
+            <SiteLocation country={this.country} state_={this.state_} />
+            {/* {this.state.searchTerm} */}
+            {this.state.hasPlants !== false ?
+              <AppRoutes plants={this.state.plants} country={this.country} state_={this.state_} />
+              : <div className="text-center"><br /><br /><br /><Spinner /></div>
+            }
+          </div>
         </div>
-        <div className="container-fluid container-main">
-          <SiteLocation country={this.country} state_={this.state_} />
-          {this.state.searchTerm}
-          { this.state.hasPlants !== false ?
-            <AppRoutes plants={this.state.plants} searchTerm={this.state.searchTerm}  country={this.country} state_={this.state_} />
-            : <div className="text-center"><br /><br /><br /><Spinner /></div>
-          }
-        </div>
-      </div>
+      </BrowserRouter>
     );
   }
 }

@@ -1,44 +1,91 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom';
+//import { Switch, Route } from 'react-router-dom';
+import { Routes, Route, useParams } from 'react-router-dom';
+
 import NoMatch from './pages/NoMatch';
 import Home from './pages/Home';
 import Plant from './pages/Plant';
 
-class AppRoute extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+import About from './pages/About';
+import Donate from './pages/Donate';
+// import Resources from './pages/Resources';
+import Contact from './pages/Contact';
 
-    }
-    //console.log(this.props);
-    //console.log(this.props.plants);
-  }
+function AppRoutes(props) {
+  // console.log('AppRoutes')
+
+  return (
+    <Routes>
+      <Route exact path="/" element={
+        <Home plants={props.plants}
+          country={props.country}
+          state_={props.state_}
+          title=""
+        />}
+      />
+      <Route exact path="/my-favorites" element={
+        <Home
+          plants={props.plants}
+          country={props.country}
+          state_={props.state_}
+          showFavorites={true}
+          title="Favorites"
+        />}
+      />
+      <Route exact path="/about" element={<About title="About localflora.info" />} />
+      <Route exact path="/donate" element={<Donate title="Donate to support Native Plants" />} />
+      <Route exact path="/contact" element={<Contact title="Contact localflora.info" />} />
+      {/*<Route exact path="/resources" element={<Resources title="North Carolina Native Plant Resources" />} />*/}
+      {/*Titles for plant pages generated on page */}
+      <Route exact path="/plant/:plantSlug" element={
+        <PlantWrapper
+          plants={props.plants}
+          country={props.country}
+          state_={props.state_}
+        />}
+      />
+      <Route component={NoMatch} />
+    </Routes>
+  );
+}
+export default AppRoutes;
 
 
+const PlantWrapper = props => {
+  // console.log(useParams)
+  const { plantSlug } = useParams();
+  // const item = this.state.starters.find((item) => item.id === Number(id));
+  // console.log(plantSlug);
+  return <Plant
+    key={plantSlug}
+    plants={props.plants}
+    country={props.country}
+    state_={props.state_}
+  />
+};
 
-  render() {
-    console.log(this.props);
-    //console.log(this.props.searchTerm);
-    return(
-      <Switch>
-        <Route exact path="/locaflora" render={
+/*
+
+        <Route exact path="/" render={
             props =>
               <Home {...props}
                 key="homeURL"
-                plants={this.props.plants}
-                country={this.props.country}
-                state_={this.props.state_}
+                plants={props.plants}
+                country={props.country}
+                state_={props.state_}
                 showFavorites={false}
               />
           }
         />
-        <Route strict path="/search" render={
+
+                <Route strict path="/search" render={
           props =>
             <Home {...props}
               key="searchURL"
-              plants={this.props.plants}
-              country={this.props.country}
-              state_={this.props.state_}
+              plants={props.plants}
+              country={props.country}
+              state_={props.state_}
+              searchTerm={props.searchTerm}
               showFavorites={false}
             />
           }
@@ -47,9 +94,9 @@ class AppRoute extends React.Component {
           props =>
             <Home {...props}
               key="favoritesURL"
-              plants={this.props.plants}
-              country={this.props.country}
-              state_={this.props.state_}
+              plants={props.plants}
+              country={props.country}
+              state_={props.state_}
               showFavorites={true}
             />
           }
@@ -58,15 +105,10 @@ class AppRoute extends React.Component {
           props =>
             <Plant {...props}
               key={props.match.params.plantSlug}
-              plants={this.props.plants}
-              country={this.props.country}
-              state_={this.props.state_}
+              plants={props.plants}
+              country={props.country}
+              state_={props.state_}
             />
           }
         />
-        <Route component={NoMatch} />
-      </Switch>
-    );
-  }
-}
-export default AppRoute;
+        */

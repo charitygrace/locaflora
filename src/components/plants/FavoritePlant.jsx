@@ -10,7 +10,8 @@ export class FavoritePlant extends React.Component {
     this.toggleFavorite = this.toggleFavorite.bind(this);
   }
 
-  toggleFavorite() {
+  toggleFavorite(e) {
+    e.preventDefault();
     const plant = this.props.plant
     let favoritesArr = []
     let favoritesArrJson

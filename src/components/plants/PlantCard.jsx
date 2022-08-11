@@ -5,16 +5,19 @@ import PlantMonthLine from './PlantMonthLine';
 import FavoritePlant from './FavoritePlant';
 import { Link } from "react-router-dom";
 import plantDefaultImage from './plantDefaultImage.svg';
-import colorsArr from '../../data/colors.json';
+// import colorsArr from '../../data/colors.json';
 //import star from '../../icons/star.svg';
 import { moistureIcon } from '../../icons/moisture.js';
 import { sunIcon } from '../../icons/sun.js';
+import { flowerIcon } from '../../icons/flower.js';
+import { berryIcon } from '../../icons/berry.js';
 
 
-const PlantCard = props =>  {
+const PlantCard = props => {
   //console.log(props);
   //console.log(plantDefaultImage);
   const plant = props.plant
+  // console.log(plant)
   let thumb1 = <img src={plantDefaultImage} alt={plant.name} className="card-img-top" />;
   let orient
   let t1 = plant.thumb['1'][0]
@@ -22,7 +25,7 @@ const PlantCard = props =>  {
     let height = t1.height
     let width = t1.width
     orient = "horiz"
-    if ((height / width) > 1) orient = "vert"
+    if ((height / width) >= 1) orient = "vert"
     let sm = 240
     let md = 500
     let lg = 1024
@@ -34,54 +37,54 @@ const PlantCard = props =>  {
 
     thumb1 = <img
       alt={t1.alt}
-      className={'card-img-top img-' + orient }
+      className={'card-img-top img-' + orient}
       src={t1.default}
       srcSet={
-        "https://static.inaturalist.org/photos/" + t1.id + "/small." + t1.fileType + " " + sm +"w, "
-        + "https://static.inaturalist.org/photos/" + t1.id + "/medium." + t1.fileType + " " + md +"w, "
-        + "https://static.inaturalist.org/photos/" + t1.id + "/large." + t1.fileType + " " + lg +"w"
+        "https://inaturalist-open-data.s3.amazonaws.com/photos/" + t1.id + "/small." + t1.fileType + " " + sm + "w, "
+        + "https://inaturalist-open-data.s3.amazonaws.com/photos/" + t1.id + "/medium." + t1.fileType + " " + md + "w, "
+        + "https://inaturalist-open-data.s3.amazonaws.com/photos/" + t1.id + "/large." + t1.fileType + " " + lg + "w"
       }
-      sizes="100vw"
-      />;
-      //console.log(thumb1.props.srcSet);
+      sizes="(max-width: 550px) 100vw, 20vw"
+    />;
+    //console.log(thumb1.props.srcSet);
 
-      /*
-      sm = sm + "w"
-      md = md + "w"
-      lg = lg + "w"
+    /*
+    sm = sm + "w"
+    md = md + "w"
+    lg = lg + "w"
 
-      "https://static.inaturalist.org/photos/" + t1.id + "/small." + t1.fileType + " " + sm + ", "
-      + "https://static.inaturalist.org/photos/" + t1.id + "/medium." + t1.fileType + " " + md + ", "
-      + "https://static.inaturalist.org/photos/" + t1.id + "/large." + t1.fileType + " " + lg
+    "https://inaturalist-open-data.s3.amazonaws.com/photos/" + t1.id + "/small." + t1.fileType + " " + sm + ", "
+    + "https://inaturalist-open-data.s3.amazonaws.com/photos/" + t1.id + "/medium." + t1.fileType + " " + md + ", "
+    + "https://inaturalist-open-data.s3.amazonaws.com/photos/" + t1.id + "/large." + t1.fileType + " " + lg
 
-      "https://static.inaturalist.org/photos/" + t1.id + "/small." + t1.fileType + " " + sm + ", "
-      + "https://static.inaturalist.org/photos/" + t1.id + "/medium." + t1.fileType + " " + md + ", "
-      + "https://static.inaturalist.org/photos/" + t1.id + "/large." + t1.fileType + " " + lg
+    "https://inaturalist-open-data.s3.amazonaws.com/photos/" + t1.id + "/small." + t1.fileType + " " + sm + ", "
+    + "https://inaturalist-open-data.s3.amazonaws.com/photos/" + t1.id + "/medium." + t1.fileType + " " + md + ", "
+    + "https://inaturalist-open-data.s3.amazonaws.com/photos/" + t1.id + "/large." + t1.fileType + " " + lg
 
-      "https://static.inaturalist.org/photos/" + t1.id + "/small." + t1.fileType + " " + sm +"w" + ", "
-      + "https://static.inaturalist.org/photos/" + t1.id + "/medium." + t1.fileType + " " + md +"w" + ", "
-      + "https://static.inaturalist.org/photos/" + t1.id + "/large." + t1.fileType + " " + lg +"w"
+    "https://inaturalist-open-data.s3.amazonaws.com/photos/" + t1.id + "/small." + t1.fileType + " " + sm +"w" + ", "
+    + "https://inaturalist-open-data.s3.amazonaws.com/photos/" + t1.id + "/medium." + t1.fileType + " " + md +"w" + ", "
+    + "https://inaturalist-open-data.s3.amazonaws.com/photos/" + t1.id + "/large." + t1.fileType + " " + lg +"w"
 
-      for horizonatal images.
-      sm = 240
-      md = 500
-      lg = 1024
-      srcset={"https://static.inaturalist.org/photos/" + t1.id + "/small." + t1.fileType + " 240w"}
-      srcset={"https://static.inaturalist.org/photos/" + t1.id + "/medium." + t1.fileType + " 500w"}
-      srcset={"https://static.inaturalist.org/photos/" + t1.id + "/large." + t1.fileType + " 1024w"}
-      for vertical images.
-      if (orient ==== "vert") {
-        sm = (width * 240) / height
-        md = (width * 500) / height
-        lg = (width * 1024) / height
-      }
+    for horizonatal images.
+    sm = 240
+    md = 500
+    lg = 1024
+    srcset={"https://inaturalist-open-data.s3.amazonaws.com/photos/" + t1.id + "/small." + t1.fileType + " 240w"}
+    srcset={"https://inaturalist-open-data.s3.amazonaws.com/photos/" + t1.id + "/medium." + t1.fileType + " 500w"}
+    srcset={"https://inaturalist-open-data.s3.amazonaws.com/photos/" + t1.id + "/large." + t1.fileType + " 1024w"}
+    for vertical images.
+    if (orient ==== "vert") {
+      sm = (width * 240) / height
+      md = (width * 500) / height
+      lg = (width * 1024) / height
+    }
 
-      example
-      srcset="elva-fairy-480w.jpg 480w,
-             elva-fairy-800w.jpg 800w"
-     sizes="(max-width: 600px) 480px,
-            800px"
-            */
+    example
+    srcset="elva-fairy-480w.jpg 480w,
+           elva-fairy-800w.jpg 800w"
+   sizes="(max-width: 600px) 480px,
+          800px"
+          */
 
   }
   if (plant.thumb['2'][0]) {
@@ -89,67 +92,54 @@ const PlantCard = props =>  {
   }
 
   return (
-    <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-1">
+    <div className="container-card col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-1">
       <div className="card h-100 mr-2 ml-2 mt-1 mb-2">
         <Link to={{
           pathname: `/plant/${plant.slug}`,
-          state: { plant :  plant }
+          state: { plant: plant }
         }}>
-          <div className="card-head">
-            {thumb1}
-            <div className="row careIcons">
-              <dl className="col-6">
-                <dt className="sr-only">Light</dt>
-                <dd>{plant.lightNeeds.map((item, index) => sunIcon(item, index))}</dd>
-              </dl>
-              <dl className="col-6 text-right">
-                <dt className="sr-only">Moisture Needs</dt>
-                <dd>{plant.soils.moistureNeeds.map((item, index) => moistureIcon(item, index))} </dd>
-              </dl>
+            <div className="card-head">
+              {thumb1}
+            {plant.lightNeeds.length > 0 || plant.soils.moistureNeeds > 0 ?
+              (
+              <div className="row g-0 ps-1 pe-1 careIcons">
+                <dl className="col">
+                  <dt className="visually-hidden">Light</dt>
+                  <dd>{plant.lightNeeds.map((item, index) => sunIcon(item, index))}</dd>
+                </dl>
+                <dl className="col text-end">
+                  <dt className="visually-hidden">Moisture Needs</dt>
+                  <dd>{plant.soils.moistureNeeds.map((item, index) => moistureIcon(item, index))} </dd>
+                </dl>
+              </div>
+              )
+              : null
+            }
+            </div>
+          <FavoritePlant plant={plant} />
+          <PlantMonthLine plant={plant} country={props.country} state_={props.state_} />
+          <div className="card-body ps-1 pe-1 pt-2">
+            <h5 className="card-title">
+              {plant.name}
+            </h5>
+            <p>{plant.taxa.commonName}</p>
+            <div className="row plant-colors">
+              {plant.flowers.colors && plant.flowers.colors.length > 0 ? (
+                <dl className="col-6 mb-0">
+                  <dt className="visually-hidden">Flower Colors</dt>
+                  <dd className="mb-0">{plant.flowers.colors.map((color, index) => flowerIcon(color, index))}</dd>
+                </dl>
+              ) : null}
+              {plant.fruits.colors && plant.fruits.colors.length > 0 ? (
+                <dl className="col-6 mb-0">
+                  <dt className="visually-hidden">Fruit Colors</dt>
+                  <dd className="mb-0">{plant.fruits.colors.map((color, index) => berryIcon(color, index))}</dd>
+                </dl>
+              ) : null}
+              {/*<div className="text-end"><a target="_blank" href={"http://localhost:5000/edit-plant/select-images/" + plant.slug}>Edit</a></div>*/}
             </div>
           </div>
-        <FavoritePlant plant={plant} />
-        <PlantMonthLine plant={plant} country={props.country} state_={props.state_} />
-        <div className="card-body">
-          <h5 className="card-title">
-              {plant.name}
-          </h5>
-          <p>{plant.taxa.commonName}</p>
-          <div className="row">
-          {plant.flowers.colors.length > 0 ? (
-            <dl className="col-6 mb-0">
-              <dt className="sr-only">Flower Colors</dt>
-              <dd className="">{
-                plant.flowers.colors.map((color, index) =>
-                  <span
-                    key={index}
-                    className="color-block color-circle"
-                    style={{backgroundColor:  colorsArr[color], border: "1px solid #ccc"} }
-                  >
-                  </span>
-                )}
-              </dd>
-            </dl>
-          ) : null}
-          {plant.fruits.colors.length > 0 ? (
-            <dl className="col-6 mb-0">
-              <dt className="sr-only">Fruit Colors</dt>
-              <dd className="">{
-                plant.fruits.colors.map((color, index) =>
-                  <span
-                    key={index}
-                    className="color-block color-circle"
-                    style={{backgroundColor:  colorsArr[color], border: "1px solid #ccc"} }
-                  >
-                  </span>
-                )}
-              </dd>
-            </dl>
-          ) : null}
-          {/*<div className="text-right"><a target="_blank" href={"http://localhost:5000/edit-plant/select-images/" + plant.slug}>Edit</a></div>*/}
-        </div>
-      </div>
-      </Link>
+        </Link>
       </div>
     </div>
   )

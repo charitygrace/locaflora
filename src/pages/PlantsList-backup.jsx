@@ -108,7 +108,7 @@ class PlantsList extends React.Component {
             <FilterForm onChange={this.changeFilter} />
           </div>
           <div id="plantGrid" className="col-9">
-            <div className="text-right">{this.state.plants.length} items</div>
+            <div className="text-end">{this.state.plants.length} items</div>
             <PlantsGrid plants={this.state.plants} />
             <br />
           </div>

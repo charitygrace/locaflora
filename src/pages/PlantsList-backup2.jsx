@@ -208,7 +208,7 @@ class PlantsList extends React.Component {
             <FilterForm onChange={this.changeFilter} />
           </div>
           <div id="plantGrid" className="col-9">
-            <div className="text-right ml-2 mr-2 plant-count">{this.state.plants.length} items</div>
+            <div className="text-end ml-2 mr-2 plant-count">{this.state.plants.length} items</div>
             <InfiniteScroll
               dataLength={this.state.items.length}
               next={this.fetchMoreData}

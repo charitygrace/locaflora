@@ -8,26 +8,28 @@ class TopBar extends React.Component {
     this.state = {
       //selected: [{term:""}]
     }
-    this.handleSearch = this.handleSearch.bind(this);
+    // this.handleSearch = this.handleSearch.bind(this);
   }
 
-  handleSearch(termArr) {
-    //console.log(termArr);
-    this.props.onChange(termArr);
-  }
+  // handleSearch(termArr) {
+  //   console.log(termArr);
+  //   this.props.onChange(termArr);
+  // }
   render(){
-    //console.log(this.props.plants);
+    // console.log(this.props.plants);
     return (
       <div className="row">
         <div className="col-6">
           <Link to="/my-favorites" className="btn btn-primary">Review Favorites</Link>
         </div>
-        <div className="col-6 text-right">
-          <SearchForm plants={this.props.plants} onChange={this.handleSearch} />
-        </div>
+        <div className="col-6 text-end">
+          <SearchForm plants={this.props.plants} /></div>
       </div>
     )
   }
 }
 
 export default TopBar
+
+  //           <SearchForm plants={this.props.plants} onChange={this.handleSearch} /></div>
+

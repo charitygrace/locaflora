@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,300;0,400;0,700;1,400&display=swap');
 
 $font-color: #707070;
-
+$primary: $font-color;
+$border-radius: 0;
+$secondary: #1DACAC;
+// $info: #1DACAC;
 $headings-font-weight: 700;
 
 $card-border-width: 0;
@@ -12,75 +15,70 @@ $font-family-sans-serif: Overpass, "Segoe UI", Roboto, "Helvetica Neue", Arial, 
 $body-color: $font-color;
 $icon-care-color: #1DACAC;
 $icon-care-card-color: #ffffff;
-$icon-favorite-active: red;
+$icon-favorite-active: #ff0070;
 
 $filter-background: #E3E3E3;
 
-@import "../node_modules/bootstrap-scss/functions";
-@import "../node_modules/bootstrap-scss/variables";
-@import "../node_modules/bootstrap-scss/mixins";
-@import "../node_modules/bootstrap-scss/root";
-@import "../node_modules/bootstrap-scss/reboot";
-@import "../node_modules/bootstrap-scss/type";
+@import "../node_modules/bootstrap-scss";
 
-
-@import "../node_modules/bootstrap-scss/images";
-@import "../node_modules/bootstrap-scss/code";
-@import "../node_modules/bootstrap-scss/grid";
-@import "../node_modules/bootstrap-scss/tables";
-@import "../node_modules/bootstrap-scss/forms";
-@import "../node_modules/bootstrap-scss/buttons";
-@import "../node_modules/bootstrap-scss/transitions";
-@import "../node_modules/bootstrap-scss/dropdown";
-@import "../node_modules/bootstrap-scss/button-group";
-@import "../node_modules/bootstrap-scss/input-group";
-@import "../node_modules/bootstrap-scss/custom-forms";
-@import "../node_modules/bootstrap-scss/nav";
-@import "../node_modules/bootstrap-scss/navbar";
-@import "../node_modules/bootstrap-scss/card";
-@import "../node_modules/bootstrap-scss/breadcrumb";
-@import "../node_modules/bootstrap-scss/pagination";
-@import "../node_modules/bootstrap-scss/badge";
-@import "../node_modules/bootstrap-scss/jumbotron";
-@import "../node_modules/bootstrap-scss/alert";
-@import "../node_modules/bootstrap-scss/progress";
-@import "../node_modules/bootstrap-scss/media";
-@import "../node_modules/bootstrap-scss/list-group";
-@import "../node_modules/bootstrap-scss/close";
-@import "../node_modules/bootstrap-scss/toasts";
-@import "../node_modules/bootstrap-scss/modal";
-@import "../node_modules/bootstrap-scss/tooltip";
-@import "../node_modules/bootstrap-scss/popover";
-@import "../node_modules/bootstrap-scss/carousel";
-@import "../node_modules/bootstrap-scss/spinners";
-@import "../node_modules/bootstrap-scss/utilities";
-@import "../node_modules/bootstrap-scss/print";
+h1,
+h2,
+h3 {
+  font-weight: normal;
+}
 
 .header {
   margin-top: 20px;
 }
 
-.list-pipe + .list-pipe::before {
-    display: inline-block;
-    padding-right: 0.5rem;
-    content: "|";
+.navbar-light {
+  .navbar-brand {
+    color: $font-color;
+  }
 }
+
+.list-pipe+.list-pipe::before {
+  display: inline-block;
+  padding-right: 0.5rem;
+  content: "|";
+}
+
+.plant-grid {
+  position: relative;
+  margin-bottom: 60px;
+}
+
 .plant-count {
   position: absolute;
   top: -20px;
   right: 15px;
 }
-.card a {
-  color: $font-color
+
+@media screen and (max-width: 370px) {
+  .container-card {
+    width: 100%;
+  }
+
+  .container-card .card {
+    max-width: 343px;
+    margin: 0 auto;
+  }
 }
+
+.card a {
+  color: $font-color;
+  text-decoration: none;
+}
+
 .card a:hover {
   text-decoration: none;
-  box-shadow: 0px 0px 7px rgba(0,0,0,.5);
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, .5);
 }
+
 .card-head {
-    height: 250px;
-    overflow: hidden;
-    position: relative;
+  height: 250px;
+  overflow: hidden;
+  position: relative;
 }
 
 .card-head img {
@@ -91,23 +89,31 @@ $filter-background: #E3E3E3;
   right: -9999px;
   margin: auto;
 }
+
 .card-head img.img-horiz {
   height: 100%;
   width: auto;
 }
-.card-head .img-vert {
+
+.card-head .img-vert {}
+
+.card-title {
+  margin-bottom: 0;
+  line-height: 1;
 }
+
 .card-body p {
-  margin-bottom: 5px
+  margin-bottom: 0px
 }
 
 .figure {
   position: relative;
 }
+
 .figure-caption {
   position: absolute;
   bottom: 0;
-  background: rgba(0,0,0,.5);
+  background: rgba(0, 0, 0, .5);
   width: 100%;
   color: white;
   padding: 2px 8px;
@@ -115,34 +121,62 @@ $filter-background: #E3E3E3;
   font-size: .75rem;
 }
 
+.favorite {
+  width: 26px;
+  line-height: 1;
+  padding: 0;
+  stroke: $font-color;
+}
+
+.plant-page .favorite {
+  position: absolute;
+  right: 0px;
+  top: -3px;
+}
+
 .card .favorite {
-    position: absolute;
-    top: 6px;
-    left: 4px;
-    width: 22px;
-    line-height: 1;
-    background: transparent;
-    border: 0;
-    padding: 0;
-  }
+  position: absolute;
+  top: 6px;
+  left: 4px;
+  width: 22px;
+  line-height: 1;
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
 .favorite svg {
   fill: transparent;
   stroke-width: 13px;
-  filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.5));
 }
+
 .card .favorite svg {
   stroke: $icon-care-card-color;
+  filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.5));
 }
+
 .favorite:focus {
-  outline:0px;
-  box-shadow:none;
+  outline: 0px;
+  box-shadow: none;
 }
-.card .favorite:hover svg {
+
+.favorite:hover:not(.fav-active) svg {
+  fill: $font-color;
+}
+
+.card .favorite:hover:not(.fav-active) svg {
   fill: $icon-care-card-color;
 }
-.favorite:focus svg {
+
+.card.favorite:focus svg {
   filter: drop-shadow(0px 0px 2px $blue);
 }
+
+.fav-active svg {
+  fill: $icon-favorite-active;
+  stroke: $icon-favorite-active;
+}
+
 .card .fav-active svg {
   fill: $icon-favorite-active;
   stroke: $icon-favorite-active;
@@ -153,14 +187,20 @@ $filter-background: #E3E3E3;
   @include clearfix
 }
 
-.card .careIcons {
-    position: absolute;
-    bottom: 0;
-    background: rgba(0,0,0,.5);
-    height: 25px;
-    right: 0;
-    left: 0;
+.colorIcons {
+  line-height: 1;
+  @include clearfix
 }
+
+.card .careIcons {
+  position: absolute;
+  bottom: 0;
+  background: rgba(0, 0, 0, .5);
+  height: 25px;
+  right: 0;
+  left: 0;
+}
+
 .careIcons svg {
   height: 35px;
   margin: 3px 2px 2px;
@@ -168,6 +208,12 @@ $filter-background: #E3E3E3;
   fill: $icon-care-color;
   stroke: $icon-care-color;
 }
+
+.colorIcons svg {
+  height: 25px;
+  margin: 3px 2px 2px;
+}
+
 .card .careIcons svg {
   height: 19px;
   margin: 3px 2px 2px;
@@ -176,68 +222,100 @@ $filter-background: #E3E3E3;
   stroke: $icon-care-card-color;
 }
 
-svg.icon-sun .sun-outer{
-}
-svg.icon-sun .sun-inner{
-}
-svg.icon-part-shade .sun-outer{
-  fill: transparent;
-}
-svg.icon-part-shade .sun-inner{
-  stroke: transparent;
-}
-svg.icon-shade .sun-outer{
-  fill: transparent;
-}
-svg.icon-shade .sun-inner{
-  fill: transparent;
-  stroke: transparent;
-}
-svg.icon-deep-shade .sun-outer{
-  fill: transparent;
-  stroke: transparent;
-}
-svg.icon-deep-shade .sun-inner{
+svg.icon-sun .sun-outer {}
+
+svg.icon-sun .sun-inner {}
+
+svg.icon-part-shade .sun-outer {
   fill: transparent;
 }
 
-svg.icon-moistureNeeds, .card svg.icon-moistureNeeds {
+svg.icon-part-shade .sun-inner {
+  stroke: transparent;
+}
+
+svg.icon-shade .sun-outer {
+  fill: transparent;
+}
+
+svg.icon-shade .sun-inner {
   fill: transparent;
   stroke: transparent;
 }
-svg.icon-dry .dropsSmall, svg.icon-dry .aquaticLines {
+
+svg.icon-deep-shade .sun-outer {
   fill: transparent;
   stroke: transparent;
 }
+
+svg.icon-deep-shade .sun-inner {
+  fill: transparent;
+}
+
+svg.icon-moistureNeeds,
+.card svg.icon-moistureNeeds {
+  fill: transparent;
+  stroke: transparent;
+}
+
+svg.icon-dry .dropsSmall,
+svg.icon-dry .aquaticLines {
+  fill: transparent;
+  stroke: transparent;
+}
+
 svg.icon-dry .dropMain {
   fill: transparent;
 }
+
 svg.icon-moist .dropMain {
   fill: $icon-care-color;
 }
+
 .card svg.icon-moist .dropMain {
   fill: $icon-care-card-color;
 }
 
-svg.icon-wet .dropMain, svg.icon-wet .dropsSmall {
+svg.icon-wet .dropMain,
+svg.icon-wet .dropsSmall {
   fill: $icon-care-color;
 }
-.card svg.icon-wet .dropMain, .card svg.icon-wet .dropsSmall {
+
+.card svg.icon-wet .dropMain,
+.card svg.icon-wet .dropsSmall {
   fill: $icon-care-card-color;
 }
+
 svg.icon-aquatic .aquaticLines {
   fill: $icon-care-color;
 }
+
 .card svg.icon-aquatic .aquaticLines {
   fill: $icon-care-card-color;
 }
+
 svg.icon-aquatic .dropsSmall {
   fill: $icon-care-color;
 }
+
 .card svg.icon-aquatic .dropsSmall {
   fill: $icon-care-card-color;
 }
 
+.plant-colors svg {
+  height: 19px;
+  margin-left: 1px;
+  margin-right: 1px;
+}
+
+svg.icon-white {
+  stroke: #000;
+  stroke-width: 2;
+}
+
+svg.icon-yellow {
+  stroke: #000;
+}
 
 .color-block {
   height: 15px;
@@ -247,11 +325,11 @@ svg.icon-aquatic .dropsSmall {
 }
 
 .color-circle {
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
 .infinite-scroll-component {
-  overflow: hidden !important
+  overflow: visible !important
 }
 
 .month-line {
@@ -272,7 +350,7 @@ svg.icon-aquatic .dropsSmall {
   transform: translateX(-50%);
   min-width: 60px;
   visibility: hidden;
-  background-color: rgba(0,0,0,.65);
+  background-color: rgba(0, 0, 0, .65);
   color: #fff;
   font-size: 12px;
   cursor: default;
@@ -299,7 +377,7 @@ svg.icon-aquatic .dropsSmall {
   width: 0;
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
-  border-bottom: 5px solid rgba(0,0,0,.65);
+  border-bottom: 5px solid rgba(0, 0, 0, .65);
   margin-left: 0;
 }
 
@@ -307,12 +385,11 @@ svg.icon-aquatic .dropsSmall {
 div:hover>.monthtip,
 div:focus>.monthtip,
 div:active>.monthtip {
-    visibility: visible;
-    opacity: 1
+  visibility: visible;
+  opacity: 1
 }
 
-div:focus>.monthtip:hover
-{
+div:focus>.monthtip:hover {
   background: none;
   border: none;
   -webkit-box-shadow: none;
@@ -322,35 +399,61 @@ div:focus>.monthtip:hover
 }
 
 .filters {
-  background: $filter-background
-}
-.filters h3 {
-  font-size: 1.25rem;
-  padding:6px 10px 0;
-}
-.Collapsible {
-  border-bottom:2px solid white;
-  padding:11px 10px;
+  background: $filter-background;
+  padding-top: 4px
 }
 
-.Collapsible__trigger {
+.filters p,
+.filters h1,
+.filters h2,
+.filters h3,
+.filters h4,
+.filters h5 {
+  padding: 6px 10px 0;
+  margin: 0;
+}
+
+.filters h3 {
+  font-size: 1.25rem;
+}
+
+.filter-collapse {
+  border-bottom: 2px solid white;
+  padding: 9px 10px 5px;
+}
+
+.filter-collapse .btn {
   font-weight: 700;
-  display:block;
+  display: block;
   position: relative;
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+  padding: 2px 0 0;
+  margin-bottom: 4px;
 }
-.Collapsible__trigger:after {
-    content: ' +';
-    line-height: 1;
-    position: absolute;
-    right: 0px;
-    top: 5px;
+
+.filter-collapse .btn:hover,
+.filter-collapse .btn:focus {
+  text-decoration: none;
+  background-color: transparent;
 }
-.Collapsible__trigger.is-open:after {
+
+.filter-collapse .btn:after {
+  content: ' +';
+  line-height: 1;
+  position: absolute;
+  right: 0px;
+  top: 5px;
+}
+
+.filter-collapse button.open-true:after {
   content: ' –';
 }
-.Collapsible__contentInner {
-  padding:4px 3px 5px;
-}
+
+// .Collapsible__contentInner {
+//   padding: 4px 3px 5px;
+// }
 
 .site-title {
   font-weight: 400;
@@ -358,10 +461,223 @@ div:focus>.monthtip:hover
   font-size: 2rem;
 }
 
-.container-main {
+/*.container-main {
   max-width: 1410px;
 }
+*/
 
 .container-nav {
-    border-bottom: 2px solid #707070;
+  border-bottom: 2px solid #707070;
+}
+
+
+/* Plant Detail */
+
+.plant-page h1 {
+  line-height: 1.1;
+  font-weight: 700;
+  margin: 0;
+}
+
+.plant-page .careIcons {
+  font-size: 12px;
+}
+
+.plant-page table {
+  background-color: #eeeeee;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.plant-page table th {
+  max-width: 100px;
+}
+
+.plant-page table th,
+.plant-page table td {
+  padding: 5px calc(var(--bs-gutter-x) * .5);
+}
+
+.figure {
+  margin-bottom: calc(var(--bs-gutter-x) * .5);
+}
+
+.plant-types a {
+  text-decoration: none;
+  color: $secondary;
+}
+
+@include media-breakpoint-down(md) {
+  .figure-thumb {
+    display: none;
+  }
+
+  .images-main {
+    margin-right: calc(var(--bs-gutter-x, 0.75rem) * -1);
+    margin-bottom: 10px;
+
+    .images-row {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+
+      figure {
+        width: auto;
+        flex: 0 0 auto;
+        margin-right: 10px;
+      }
+
+      img {
+        max-width: 90vw;
+        max-height: 35vh;
+      }
+    }
+  }
+}
+
+
+// .offcanvas.show {
+//   visibility: visible;
+// }
+
+// @include media-breakpoint-up(md) {
+
+//   .offcanvas-body {
+//     // flex-grow: 1;
+//     padding: 0;
+//     // overflow-y: auto;
+//   }
+
+//   .offcanvas-wide.offcanvas-start {
+//     // top: 0;
+//     // left: 0;
+//     // width: 400px;
+//     border-right: 0px;
+//     transform: none
+//   }
+
+//   .offcanvas-wide.offcanvas {
+//     position: static;
+//     // bottom: 0;
+//     // z-index: 1045;
+//     // display: flex;
+//     // flex-direction: column;
+//     // max-width: 100%;
+//     visibility: visible;
+//     // background-color: #fff;
+//     // background-clip: padding-box;
+//     // outline: 0;
+//     // transition: transform 0.3s ease-in-out;
+//   }
+// }
+
+.container-offcanvas {
+  width: 100%;
+}
+
+.plant-header {
+  position: relative;
+}
+
+@include media-breakpoint-up(md) {
+
+  .plant-header,
+  .plant-details {
+    float: right;
+    width: 50%;
+  }
+
+  .plant-images {
+    float: left;
+    width: 50%;
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    min-height: 200px;
+  }
+
+}
+
+@include media-breakpoint-up(xl) {
+
+  .plant-header,
+  .plant-details {
+    width: 45%;
+  }
+
+  .plant-images {
+    width: 55%;
+  }
+
+}
+
+@include media-breakpoint-up(md) {
+
+  .masonry-with-columns {
+    columns: 2 150px;
+    column-gap: 10px;
+
+    figure {
+      margin: 0 0px 10px 0;
+      display: block;
+      // width: 100%;
+      // text-align: center;
+    }
+
+    figure:first-of-type {
+      display: none;
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .figure-thumb {
+    display: none;
+  }
+
+  // .masonry-with-columns {
+  //   figure:first-of-type {
+  //     display: none;
+  //   }
+  // }
+}
+
+@media screen and (min-width: 1200px) {
+  .figure-thumb {
+    display: none;
+  }
+
+  .masonry-with-columns {
+    figure:first-child {
+      display: inline-block;
+    }
+  }
+}
+
+
+.nav-pages {
+  position: fixed;
+  bottom: 0;
+  background: $filter-background;
+  padding: 10px;
+  // width: auto;
+  // right: 0;
+
+  .pagination {
+    margin-bottom: 0;
+
+    .page-link:hover {
+      color: #fff;
+      background-color: $secondary;
+      border-color: #dee2e6;
+    }
+
+    .active .page-link:hover {
+      z-index: 3;
+      color: #fff;
+      background-color: #707070;
+    }
+
+    .dots {
+      padding: 0.375rem 0.75rem;
+    }
+  }
 }

@@ -5,7 +5,7 @@ function Spinner(props) {
   if (props.size === 'sm') size='spinner-border-sm'
   return(
       <div className={"spinner-border text-primary ml-3 " + size} role="status">
-        <span className="sr-only">Loading...</span>
+        <span className="visually-hidden">Loading...</span>
       </div>
   );
 }

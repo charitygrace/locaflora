@@ -14,12 +14,12 @@ export class SortForm extends React.Component {
   }
   render() {
     return (
-      <div className="form-group row">
-        <label htmlFor="select-sort-by" className="col-sm-4 col-form-label">Sort by</label>
-        <div className="col-sm-8">
-          <select id="select-sort-by" className="custom-select" onChange={this.handleChange}>
+      <div className="mb-3 row">
+        <label htmlFor="select-sort-by" className="col-sm-3 col-form-label">Sort</label>
+        <div className="col-sm-9">
+          <select id="select-sort-by" className="custom-select form-select" onChange={this.handleChange}>
             <option value="name" data-sorttype="alpha">Scientific Name</option>
-            <option value="height.max" data-sorttype="num">Height - Maximum</option>
+            {/*<option value="height.max" data-sorttype="num">Height - Maximum</option>*/}
             <option value="taxa.commonName" data-sorttype="alpha">Common Name</option>
           </select>
         </div>
