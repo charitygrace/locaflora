@@ -77,15 +77,20 @@ const SearchForm = props => {
     //   })
     // }
     options.push(item.name)
-    if (item.taxa.commonName) options.push(item.taxa.commonName)
-    if (item.taxa.commonAlts && item.taxa.commonAlts.length > 0) {
+    if (item.taxa && item.taxa.commonName) options.push(item.taxa.commonName)
+    if (item.taxa && item.taxa.commonAlts && item.taxa.commonAlts.length > 0) {
       item.taxa.commonAlts.forEach(i => {
         options.push(i)
       })
     }
-    if (item.taxa.genus && !options.includes(item.taxa.genus)) options.push(item.taxa.genus)
-    if (item.taxa.scientificFamily && !options.includes(item.taxa.scientificFamily)) options.push(item.taxa.scientificFamily)
-    if (item.taxa.commonFamily && !options.includes(item.taxa.commonFamily)) options.push(item.taxa.commonFamily)
+    if (item.taxa && item.taxa.scientificAlts && item.taxa.scientificAlts.length > 0) {
+      item.taxa.scientificAlts.forEach(i => {
+        options.push(i)
+      })
+    }
+    if (item.taxa && item.taxa.genus && !options.includes(item.taxa.genus)) options.push(item.taxa.genus)
+    if (item.taxa && item.taxa.scientificFamily && !options.includes(item.taxa.scientificFamily)) options.push(item.taxa.scientificFamily)
+    if (item.taxa && item.taxa.commonFamily && !options.includes(item.taxa.commonFamily)) options.push(item.taxa.commonFamily)
   })
   // console.log(options);
   options.sort(function (a, b) {

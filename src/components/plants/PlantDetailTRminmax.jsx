@@ -2,7 +2,7 @@ import React from 'react'
 
 
 const PlantDetailTRminmax = props =>  {
-  console.log(props)
+  // console.log(props)
   let unit = "ft" 
   if (props.field && props.field.unit && props.field.unit.options) unit = props.field.unit.options
   let td;

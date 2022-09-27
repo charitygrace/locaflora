@@ -81,21 +81,27 @@ h3 {
   position: relative;
 }
 
-.card-head img {
-  position: absolute;
-  top: -9999px;
-  bottom: -9999px;
-  left: -9999px;
-  right: -9999px;
-  margin: auto;
-}
+// .card-head img {
+//   position: absolute;
+//   top: -9999px;
+//   bottom: -9999px;
+//   left: -9999px;
+//   right: -9999px;
+//   margin: auto;
+// }
 
-.card-head img.img-horiz {
+// .card-head img.img-horiz {
+//   height: 100%;
+//   width: auto;
+// }
+
+// .card-head .img-vert {}
+
+.card-head figure, .card-head img {
   height: 100%;
-  width: auto;
+  width: 100%;
+  object-fit: cover;
 }
-
-.card-head .img-vert {}
 
 .card-title {
   margin-bottom: 0;

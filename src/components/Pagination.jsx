@@ -1,13 +1,16 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom'
 import { usePagination, DOTS } from './UsePagination';
+import { PaginationText } from './PaginationText';
+
 // import { Link } from "react-router-dom";
 //https://www.freecodecamp.org/news/build-a-custom-pagination-component-in-react/
 const Pagination = props => {
   const {
     onPageChange,
     totalCount,
-    siblingCount = 3,
+    siblingCount = 1,
+    pageAlpha = false,
     pageCurrent,
     pageSize,
     plants,
@@ -31,18 +34,21 @@ const Pagination = props => {
   }
 
   const onNext = () => {
+    console.log('onNext');
     searchParams.set("page", Number(pageCurrent) + 1);
     setSearchParams(searchParams);
     onPageChange(Number(pageCurrent) + 1);
   };
 
   const onPrevious = () => {
+    console.log('onPrevious');
     searchParams.set("page", Number(pageCurrent) - 1);
     setSearchParams(searchParams);
     onPageChange(Number(pageCurrent) - 1);
   };
 
   const onPageClick = (pageNumber) => {
+    // console.log('onPageClick');
     searchParams.set("page", pageNumber);
     setSearchParams(searchParams);
     onPageChange(pageNumber);
@@ -76,13 +82,18 @@ const Pagination = props => {
                 className="page-link"
                 onClick={() => onPageClick(pageNumber)}
               >
-                {
+                {pageNumber}
+                {pageAlpha === true ? <PaginationText
+                  alphaPrior={pageNumber * pageSize - (pageSize + 1) >= 0 ? plants[pageNumber * pageSize - (pageSize + 1)].name : "z"}
+                  alphaStart={plants[pageNumber * pageSize - (pageSize)].name}
+                  alphaEnd={pageNumber * pageSize - 1 < plants.length ? plants[pageNumber * pageSize - 1].name : plants[plants.length - 1].name} /> : null }
+                {/*
                   plants[pageNumber * pageSize - 1] &&
                     plants[pageNumber * pageSize - (pageSize)].name.substring(0, 1) !== plants[pageNumber * pageSize - 1].name.substring(0, 1) ?
                     pageNumber + " / " + plants[(Number(pageNumber)) * pageSize - 1].name.substring(0, 1) :
                     Number(pageNumber) === Number(pageCurrent) ? pageNumber + " / " + plants[pageNumber * pageSize - (pageSize)].name.substring(0, 1) + " plants" :
                       pageNumber
-                }
+          */}
               </button>
             </li>
           )

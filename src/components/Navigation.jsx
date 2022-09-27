@@ -10,7 +10,7 @@ const Navigation = () => {
   const currentPath = location.pathname;
   return (
     <Navbar expand="sm">
-        <Navbar.Brand href="/">Local Flora</Navbar.Brand>
+      <Navbar.Brand href="/">Local Flora <small style={{ fontFamily:'monospace'}}>(Beta)</small></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="navMain">
         <Nav defaultActiveKey="/" activeKey={currentPath} className="mr-auto">

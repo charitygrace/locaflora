@@ -8,41 +8,31 @@ function FilterGroupRadio(props) {
   const [open, setOpen] = useState(false);
   const [activeFilters, setActiveFilters] = useState(props.activeFilters);
 
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     activeFilters: this.props.activeFilters,
-  //   }
-  //   this.handleChange = this.handleChange.bind(this);
-  // }
 
   function handleChange(e) {
     //console.log('handleChange check');
+    console.log(props.activeFilters)
+    console.log(activeFilters)
     const filterName = props.filterName
-    // const filter = this.props.filters.find( item => item.name === filterName );
     const filterValue = e.target.value;
-    //console.log(filterValue);
-    // let activeFilters = this.state.activeFilters;
-    //console.log(activeFilters);
-    //console.log(activeFilter.length);
+    // console.log(filterValue);
+    // console.log(activeFilters);
+    // console.log(activeFilter.length);
     // setup the activeFilter array as soon as something is clicked
     let match = activeFilters.find(item => item.name === filterName);
-    //console.log(match);
-    //console.log(match.options);
-    // console.log(match.options)
+    // console.log(match);
+    console.log(match.options);
+    console.log(filterValue)
     if (e.target.checked) {
-      //console.log("2");
-      match.options = [filterValue]
-      //console.log(match.options);
+      console.log("2");
+      if (filterValue == "all") match.options = []
+      else match.options = [filterValue]
     } else {
-      //console.log("3");
+      console.log("3");
       match.options = []
       //console.log(match.options);
     }
-    //console.log(activeFilters);
-    // this.setState({
-    //   activeFilters: activeFilters
-    // })
+    console.log(activeFilters)
     props.onChange(activeFilters);
   }
 

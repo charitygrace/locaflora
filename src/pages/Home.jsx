@@ -4,6 +4,7 @@ import PlantsList from './PlantsList'
 
 function Home(props) {
   // console.log("Home");
+  // console.log(props.plants)
 
   let keyName = "home"
   if (props.showFavorites) keyName = "favorites"

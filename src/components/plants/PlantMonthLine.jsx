@@ -12,7 +12,10 @@ const PlantMonthLine = props => {
   //console.log(location);
   //console.log(leafRetention[location]);
 
-  if (plant.flowers.colors.length > 0 || plant.leaves.retention.length > 0) {
+  if (
+    (plant.flowers && plant.flowers.colors && plant.leaves && plant.leaves.retention) &&
+    (plant.flowers.colors.length > 0 || plant.leaves.retention.length > 0)
+    ) {
 
     const bloomMonths = plant.flowers.months
     let bloomColor = plant.flowers.colors[0]
