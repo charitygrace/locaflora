@@ -15,15 +15,16 @@ class TopBar extends React.Component {
   //   console.log(termArr);
   //   this.props.onChange(termArr);
   // }
-  render(){
+  render() {
     // console.log(this.props.plants);
     return (
       <div className="row">
-        <div className="col-6">
+        <div className="col-12 col-sm-6 text-end order-sm-2">
+          <SearchForm plants={this.props.plants} />
+        </div>
+        <div className="col-12 col-sm-6 mt-1 mt-sm-0">
           <Link to="/my-favorites" className="btn btn-primary">Review Favorites</Link>
         </div>
-        <div className="col-6 text-end">
-          <SearchForm plants={this.props.plants} /></div>
       </div>
     )
   }

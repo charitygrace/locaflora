@@ -122,8 +122,9 @@ const Plant = props => {
         <div className="plant-images">
           <div className="images-main">
             {image ? (
-              <PlantImage showCredit={true} name={plant.name} image={image} sizes="calc(50vw - 24px)" imageClass="img-fluid" />
-              // <figure className="figure figure-thumb">
+              <div className="figure-thumb">
+                <PlantImage showCredit={true} name={plant.name} image={image} sizes="calc(50vw - 24px)" imageClass="img-fluid" />
+              {/* // <figure className="figure figure-thumb">
               //   <img
               //     src={iNatSrc + image.id + "/large." + image.fileType}
               //     alt={image.alt}
@@ -136,8 +137,9 @@ const Plant = props => {
               //     }}
               //   />
               //   {image.license !== "cc0" ? <figcaption className="figure-caption">{image.credit}</figcaption> : null}
-              // </figure>
-              )
+              // </figure> */}
+              </div>
+            )
               : null
             }
             <div className="images-row masonry-with-columns g-0">
@@ -163,7 +165,7 @@ const Plant = props => {
               )}
             </div>
           </div>
-          <div className='d-grid mt-2 mb-2 gap-2'><a className='btn btn-secondary' target="_blank" href={"https://www.inaturalist.org/taxa/"+plant.id+"/browse_photos"}>More Photos</a></div>
+          <div className='d-grid mt-2 mb-2 gap-2'><a className='btn btn-secondary' target="_blank" href={"https://www.inaturalist.org/taxa/" + plant.id + "/browse_photos"}>More Photos</a></div>
         </div>
 
         <div className="plant-details">

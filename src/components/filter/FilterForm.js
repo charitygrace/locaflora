@@ -53,7 +53,7 @@ const FilterForm = props => {
   return (
     <div className="filters">
       <h3>Filter By</h3>
-      <p className="small"><i>Only about 800 plants have the follow info.</i></p>
+      <p className="small"><i>Only about 800 plants have the following info.</i></p>
       <FilterGroupRadio onChange={changeFilter} filterName="plantTypes" filters={filters} activeFilters={activeFilters} />
       <FilterGroupCheckbox onChange={changeFilter} filterName="lightNeeds" filters={filters} activeFilters={activeFilters} />
       <FilterGroupCheckbox onChange={changeFilter} filterName="soils.moistureNeeds" filters={filters} activeFilters={activeFilters} />

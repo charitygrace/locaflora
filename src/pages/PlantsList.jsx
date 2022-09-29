@@ -115,12 +115,13 @@ const PlantsList = props => {
     //   setSearchParams(searchParams)
     // }
 
-    var sortKey = sortBy.split('.');
+    let sortKey = sortBy.split('.');
 
+    let activePlants = plantsDisplay
     if (sortType === 'alpha') {
       // setSortType('alpha');
 
-      plants.sort(function (a, b) {
+      activePlants.sort(function (a, b) {
         let a_sortBy = a[sortKey[0]];
         let b_sortBy = b[sortKey[0]];
         if (sortKey.length === 2) {
@@ -134,7 +135,7 @@ const PlantsList = props => {
     }
     if (sortType === 'num') {
       // setSortType('num');
-      plants.sort(function (a, b) {
+      activePlants.sort(function (a, b) {
         let a_sortBy = a[sortKey[0]];
         let b_sortBy = b[sortKey[0]];
         if (sortKey.length === 2) {
@@ -144,17 +145,14 @@ const PlantsList = props => {
         return a_sortBy - b_sortBy;
       });
     }
-    // console.log(plants)
-    setPlantsDisplay(plants)
+    console.log(activePlants)
+    setPlantsDisplay(activePlants)
     // setStart(scrollCount)
-    setPageCurrent(1)
-    setPageTop(1)
-    searchParams.set("page", 1);
-    setSearchParams(searchParams);
-    setHasMore(plants.length > scrollCount ? true : false)
-    setItems(plants.slice(0, scrollCount))
-
+    setItems(activePlants.slice(0, scrollCount))
+    setHasMore(activePlants.length > scrollCount ? true : false)
+    resetPage()
   }
+
   const removeFilter = (e, data) => {
     // console.log("removeFilter")
     const filterName = e.target.dataset.filtername
@@ -200,21 +198,26 @@ const PlantsList = props => {
     } else setPageAlpha(false);
     setPlantsDisplay(activePlants)
     setItems(activePlants.slice(0, scrollCount))
-    setStart(scrollCount)
-    setPageTop(1)
-    setPageCurrent(1)
-    searchParams.set("page", 1);
-    setSearchParams(searchParams);
+    // setStart(scrollCount)
+    // setPageTop(1)
+    // setPageCurrent(1)
+    // searchParams.set("page", 1);
+    // setSearchParams(searchParams);
     setHasMore(activePlants.length > scrollCount ? true : false)
     setFilters(activeFilters)
+    resetPage()
   }
 
+
   const fetchMoreData = () => {
-    // console.log('fetchMoreData')
+    console.log('fetchMoreData')
     // console.log(start)
     const end = start + scrollCount
     // let more = true
     // if (plantsDisplay.length < (end - 1)) more = false
+    console.log(plantsDisplay.length)
+    console.log(end - 1)
+    console.log(plantsDisplay.length >= (end - 1))
     setHasMore(plantsDisplay.length >= (end - 1) ? true : false)
     setItems(items.concat(plantsDisplay.slice(start, end)))
     // setStart(end)
@@ -231,6 +234,14 @@ const PlantsList = props => {
     setItems(activePlants.slice(0, scrollCount))
     setHasMore(activePlants.length > scrollCount ? true : false)
     window.scroll(0, 0)
+  }
+
+  const resetPage = () => {
+    setPageCurrent(1)
+    setPageTop(1)
+    searchParams.set("page", 1);
+    setSearchParams(searchParams);
+    setStart(scrollCount)
   }
 
   const handleScroll = (e) => {

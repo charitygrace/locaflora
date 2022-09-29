@@ -32,32 +32,32 @@ const PlantImage = props => {
       lg = Math.round((image.width * 1024) / image.height)
     }
     return (
-      <figure className="figure figure-thumb">
+      <figure className="figure">
         <img
           alt={name}
           className={imageClass + " img-" + orient}
           src={iNatSrc + image.id + "/large." + image.fileType}
-          srcSet={
-            iNatSrc + image.id + "/small." + image.fileType + " " + sm + "w, "
-            + iNatSrc + image.id + "/medium." + image.fileType + " " + md + "w, "
-            + iNatSrc + image.id + "/large." + image.fileType + " " + lg + "w, "
-            + iNatSrc + image.id + "/original." + image.fileType + " " + image.width + "w"
-          }
-          sizes={sizes}
-          onError={({ currentTarget }) => {
-            // console.log(currentTarget.onerror)
-            // console.log(plantDefaultImage)
-            currentTarget.onerror = null
-            iNatSrc = iNatSrcAlt
-            const src2 = iNatSrc + image.id + "/large." + image.fileType
-            if (currentTarget.src != src2) {
-              currentTarget.src = iNatSrc + image.id + "/large." + image.fileType
-              currentTarget.srcset = iNatSrc + image.id + "/small." + image.fileType + " " + sm + "w, "
-                + iNatSrc + image.id + "/medium." + image.fileType + " " + md + "w, "
-                + iNatSrc + image.id + "/large." + image.fileType + " " + lg + "w, "
-                + iNatSrc + image.id + "/original." + image.fileType + " " + image.width + "w"
-            } else currentTarget.parentElement.remove()
-          }}
+          // srcSet={
+          //   iNatSrc + image.id + "/small." + image.fileType + " " + sm + "w, "
+          //   + iNatSrc + image.id + "/medium." + image.fileType + " " + md + "w, "
+          //   + iNatSrc + image.id + "/large." + image.fileType + " " + lg + "w, "
+          //   + iNatSrc + image.id + "/original." + image.fileType + " " + image.width + "w"
+          // }
+          // sizes={sizes}
+          // onError={({ currentTarget }) => {
+          //   // console.log(currentTarget.onerror)
+          //   // console.log(plantDefaultImage)
+          //   currentTarget.onerror = null
+          //   iNatSrc = iNatSrcAlt
+          //   const src2 = iNatSrc + image.id + "/large." + image.fileType
+          //   if (currentTarget.src != src2) {
+          //     currentTarget.src = iNatSrc + image.id + "/large." + image.fileType
+          //     currentTarget.srcset = iNatSrc + image.id + "/small." + image.fileType + " " + sm + "w, "
+          //       + iNatSrc + image.id + "/medium." + image.fileType + " " + md + "w, "
+          //       + iNatSrc + image.id + "/large." + image.fileType + " " + lg + "w, "
+          //       + iNatSrc + image.id + "/original." + image.fileType + " " + image.width + "w"
+          //   } else currentTarget.parentElement.remove()
+          // }}
         />
         {image.license !== "cc0" && showCredit == true ? <figcaption className="figure-caption">{image.credit}</figcaption> : null}
       </figure>

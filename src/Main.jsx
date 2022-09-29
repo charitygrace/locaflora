@@ -72,7 +72,7 @@ const Main = props => {
     <BrowserRouter>
       <ScrollToTop />
       <div>
-        <div className="header">
+        <div className="header mt-2 mt-sm-3">
           <div className="container-fluid container-main">
             {<TopBar plants={plants} />}
           </div>

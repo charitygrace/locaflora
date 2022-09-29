@@ -9,7 +9,7 @@ export function sortAlpha(a, b) {
 
 const SearchForm = props => {
   // console.log(props)
-  let term
+  let term;
   // let params = (new URL(document.location)).searchParams;
   // let activeQuery = params.get('q'); // is the string "Jonathan Smith".
   // console.log(activeQuery);
@@ -21,17 +21,57 @@ const SearchForm = props => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setQuery(searchParams.has('q') ? [searchParams.get('q')] : []);
-
+    // console.log("effect")
+    // console.log(text)
+    // console.log(query)
+    // console.log(searchParams.get('q'))
+    if (searchParams.get('q') == "[object Object]" ) {
+      updatePath("")
+    }
+    if (searchParams.get('q') == "" ) {
+      updatePath("")
+    }
+    // setQuery(searchParams.has('q') ? [searchParams.get('q')] : []);
     // console.log(searchParams.has('q'))
     // console.log(searchParams.get('q'))
     // console.log(text)
     // console.log(query)
   }, [searchParams]);
-  // console.log(searchParams.has('q'))
-  // console.log(searchParams.get('q'))
-  // console.log(text)
-  // console.log(query)
+
+  useEffect(() => {
+    // console.log("effect2")
+    // console.log(text)
+    // console.log(query)
+    // console.log(query[0])
+    let term = query[0]
+    //correcting for a possible bug in the typeahead
+    if (query[0] && query[0].label) {
+      term = query[0].label
+      setQuery([query[0].label])
+    }
+    //&& query[0].label != "[object Object]"
+    if (term) {
+      updatePath(term)
+      // setText(query[0])
+    }
+  }, [query]);
+
+  const updatePath = term => {
+    // console.log("updatePath")
+    // console.log(term)
+    if (!term) {
+      navigate({
+        pathname: '/'
+      });
+    } 
+    if (term) {
+      navigate({
+        pathname: '/',
+        search: '?q=' + term
+      });
+    }
+    // window.focus();
+  }
 
   const handleSubmit = event => {
     // console.log("handleSubmit")
@@ -39,24 +79,42 @@ const SearchForm = props => {
     // console.log(event)
     // console.log(event.target)
     // console.log(text)
+    // console.log(query)
+    // console.log(query[0])
+    let term = query[0]
     if (text) term = text
-    if (query.length > 0) term = query[0]
+    // console.log(query)
+    // console.log(query.length)
+    // if (query.length > 0 && query.label != term) term = query.label
     // console.log(query)
     // console.log(term)
     // if (query) term = query
     // console.log(term)
     // searchParams.delete('page');
     // if (term) setSearchParams({ q: term })
-    navigate({
-      pathname: '/',
-      search: '?q=' + term
-    });
-    event.target.blur();
-    window.focus();
+    // console.log(term)
+    // updatePath(term)
+    // console.log(text)
+    updatePath(term)
+    // if (!term) {
+    //   navigate({
+    //     pathname: '/'
+    //   });
+    // } else {
+    //   navigate({
+    //     pathname: '/',
+    //     search: '?q=' + term
+    //   });
+    // }
+    // event.target.blur();
+    // if (document.getElementById("findPlant")) document.getElementById("findPlant").outerHTML = "";
+    // window.focus();
   }
+
   const onKeyDown = (event) => {
     // console.log("onKeyDown")
-    // console.log(e)
+    // console.log(event)
+    // console.log(query)
     if (event.keyCode === 13) {
       handleSubmit(event);
     }
